@@ -36,18 +36,35 @@ func PressureHub(wg *sync.WaitGroup) {
 	}
 
 	fmt.Println("")
-	fmt.Println("Обычное атмосферное давление")
 
-	for k, v := range pressureData {
-		fmt.Println(k, "-", v)
+	if len(pressureData) > 0 {
+		fmt.Println("")
+		fmt.Println("обычное атмосферное давление")
+		fmt.Println("")
+		for k, v := range pressureData {
+			fmt.Println(k, "-", v)
+		}
+	} else {
+		fmt.Println("")
+		fmt.Println("Обычное атмосферное давление не обнаружено!")
+		fmt.Println("")
 	}
-
+	 
 	fmt.Println("")
-	fmt.Println("Высокое атмосферное давление")
 
-	for k, v := range highPressureData {
-		fmt.Println(k, "-", v)
+	 
+	if len(highPressureData) > 0 {
+		fmt.Println("")
+		fmt.Println("Высокое атмосферное давление")
+		fmt.Println("")
+		for k, v := range highPressureData {
+			fmt.Println(k, "-", v)
+		}
+	} else {
+		fmt.Println("")
+		fmt.Println("Высокое атмосферное давление не обнаружено!")
+		fmt.Println("")
 	}
-
+	 
 	fmt.Println("")
 }

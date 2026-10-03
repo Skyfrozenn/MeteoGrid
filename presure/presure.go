@@ -36,7 +36,7 @@ func presureSensor(
 				coordinate : pressure,
 			}
 
-			fmt.Println("Я датчик номер - ", numSensor, "передал показания в цетр!")
+			fmt.Println("Я датчик номер - ", numSensor, "передал показания в центр!")
 
 
 		}

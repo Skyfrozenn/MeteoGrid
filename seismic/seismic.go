@@ -29,13 +29,13 @@ func seismicSensor(
 			fmt.Println("Я датчик номер - ", numSensor, "собираю показания влажности воздуха по координатам = ", coordinate)
 			time.Sleep(1 * time.Second)
 
-			active := 1.5 + rand.Float64() * 10 // активность
+			active := 1.1 + rand.Float64()*8.9 // активность
 
 			transferSensor <- map[float64]float64{ // передача в канал мапы
 				coordinate : active,
 			}
 
-			fmt.Println("Я датчик номер - ", numSensor, "передал показания в цетр!")
+			fmt.Println("Я датчик номер - ", numSensor, "передал показания в центр!")
 
 
 		}
@@ -59,6 +59,9 @@ func poolSeismic(
 
 	go func() {
 		wg.Wait()
+		fmt.Println("")
+		fmt.Println("Все сейсмо датчики завершили работу!")
+		fmt.Println("")
 		close(seismicChan)
 	}()
 

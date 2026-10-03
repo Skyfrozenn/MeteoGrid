@@ -37,21 +37,36 @@ func HumidityHub(wg *sync.WaitGroup) {
 	}
 
 	fmt.Println("")
-	fmt.Println("Обычная влажность воздуха = ")
-	fmt.Println("")
 
-	for k,v := range humidityData {
-		fmt.Println(k, "- ", v)
+	if len(humidityData) > 0 {
+		fmt.Println("")
+		fmt.Println("Обычная влажность воздуха")
+		fmt.Println("")
+		for k, v := range humidityData {
+			fmt.Println(k, "-", v)
+		}
+	} else {
+		fmt.Println("")
+		fmt.Println("Обычная влажность воздуха не обнаружена!")
+		fmt.Println("")
 	}
-
-	fmt.Println("")
-	fmt.Println("Высокая влажность воздуха = ")
+	 
 	fmt.Println("")
 
-	for k,v := range highHumidityData {
-		fmt.Println(k, "- ", v)
+	 
+	if len(highHumidityData) > 0 {
+		fmt.Println("")
+		fmt.Println("Высокая влажность воздуха")
+		fmt.Println("")
+		for k, v := range highHumidityData {
+			fmt.Println(k, "-", v)
+		}
+	} else {
+		fmt.Println("")
+		fmt.Println("Высокая влажность воздуха не обнаружено!")
+		fmt.Println("")
 	}
-
+	 
 	fmt.Println("")
 
 	

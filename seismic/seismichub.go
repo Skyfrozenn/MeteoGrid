@@ -20,7 +20,7 @@ func SeismicHub(wg *sync.WaitGroup) {
 
 	ctxSeismo, seismoCancel := context.WithCancel(context.Background()) // контекст для отмены сейсмо датчиков
 
-	seismicTransfer := poolSeismic(ctxSeismo, 2) // фунция возвращающая канал
+	seismicTransfer := poolSeismic(ctxSeismo, 6) // фунция возвращающая канал
 
 	go func() {
 		time.Sleep(3 * time.Second)
@@ -30,7 +30,7 @@ func SeismicHub(wg *sync.WaitGroup) {
 		
 	for data := range seismicTransfer {
 		for k,v := range data {
-			if v >= 7 {
+			if v > 7 {
 				fmt.Println("")
 				fmt.Println("Дата центр сейсмо - активности  обнаружил высокую сейсмо активность по координатам = ", k)
 				hightseismicData[k] = v
@@ -43,20 +43,36 @@ func SeismicHub(wg *sync.WaitGroup) {
 	}
 
 	fmt.Println("")
-	fmt.Println("Обычная сейсмо - активность")
 
-	for k,v := range seismicData {
-		fmt.Println(k, "-  ", v)
+	if len(seismicData) > 0 {
+		fmt.Println("")
+		fmt.Println("Обычное сейсмо активность")
+		fmt.Println("")
+		for k, v := range seismicData {
+			fmt.Println(k, "-", v)
+		}
+	} else {
+		fmt.Println("")
+		fmt.Println("Обычное сейсмо активность не обнаружено!")
+		fmt.Println("")
 	}
-
+	 
 	fmt.Println("")
 
-	fmt.Println("Высокая сейсмо -  активность")
-
-	for k,v := range hightseismicData {
-		fmt.Println(k, "-  ", v)
+	 
+	if len(hightseismicData) > 0 {
+		fmt.Println("")
+		fmt.Println("Высокое сейсмо активность!")
+		fmt.Println("")
+		for k, v := range hightseismicData {
+			fmt.Println(k, "-", v)
+		}
+	} else {
+		fmt.Println("")
+		fmt.Println("Высокое сейсмо активность не обнаружена!")
+		fmt.Println("")
 	}
-
+	 
 	fmt.Println("")
 	 
 
